@@ -1,10 +1,15 @@
 import { LandingPage } from './LandingPage';
+import { RiddlePage } from './RiddlePage';
 
 export const routes = [
     {
         index: true,
         path: '/',
         element: <LandingPage />,
+    },
+    {
+        path: '/riddle/:riddleId',
+        element: <RiddlePage />,
     },
     {
         path: '*',

@@ -2,13 +2,23 @@ import { App } from '../App';
 
 describe('Random riddle', () => {
     it('see random riddle', () => {
-        cy.intercept('GET', '**/riddles', {
-            body: [{
+        cy.intercept('GET', '**/riddles/RIDDLE_ID', {
+            body: {
                 id: 'RIDDLE_ID',
                 contents: 'What is the capital of France?',
                 answers: [],
-            }]
+            },
         });
+        cy.intercept('GET', '**/riddles', {
+            body: [
+                {
+                    id: 'RIDDLE_ID',
+                    contents: 'What is the capital of France?',
+                    answers: [],
+                },
+            ],
+        });
+
         cy.mount(<App />, '/');
 
         cy.getByTestId('work-interval').should('be.visible');
